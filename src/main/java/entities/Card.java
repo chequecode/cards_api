@@ -27,10 +27,13 @@ public class Card {
     private int balance;
     @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
     private List<Transaction> transactions;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User ownerUser;
 
     public Card() {}
 
-    public Card(Long id, String cardNumber, String holderName, LocalDate expirationDate, CardStatus status, int balance, List<Transaction> transactions) {
+    public Card(Long id, User ownerUser, String cardNumber, String holderName, LocalDate expirationDate, CardStatus status, int balance, List<Transaction> transactions) {
         this.id = id;
         this.cardNumber = cardNumber;
         this.holderName = holderName;
@@ -38,6 +41,23 @@ public class Card {
         this.status = status;
         this.balance = balance;
         this.transactions = transactions;
+        this.ownerUser = ownerUser;
+    }
+
+    public User getOwnerUser() {
+        return ownerUser;
+    }
+
+    public void setOwnerUser(User ownerUser) {
+        this.ownerUser = ownerUser;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCardNumber() {

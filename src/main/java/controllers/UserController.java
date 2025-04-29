@@ -71,17 +71,21 @@ public class UserController {
 
     private User convertToEntity(UserDTO userDTO) {
         User user = new User();
-        user.setName(userDTO.getName());
         user.setId(userDTO.getId());
         user.setEmail(userDTO.getEmail());
+        user.setPassword(userDTO.getPassword());
+        user.setRole(userDTO.getRole());
+        user.setCards(userDTO.getCards());
         return user;
     }
 
     private UserDTO convertToDTO(User user) {
         UserDTO userDTO = new UserDTO();
-        userDTO.setEmail(user.getEmail());
         userDTO.setId(user.getId());
-        userDTO.setName(user.getName());
+        userDTO.setEmail(user.getEmail());
+        userDTO.setPassword(user.getPassword());
+        userDTO.setRole(user.getRole());
+        userDTO.setCards(user.getCards());
         return userDTO;
     }
 }

@@ -14,7 +14,7 @@ public class CardService {
     @Autowired
     CardRepository cardRepository;
 
-    public Card cardUpdate(Long id, Card cardDetails) {
+    public Card updateCard(Long id, Card cardDetails) {
         Card card = cardRepository.findById(id).orElseThrow(() -> new RuntimeException("card not found"));
         card.setCardNumber(card.getCardNumber());
         card.setHolderName(card.getHolderName());

@@ -9,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "Users")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +20,7 @@ public class User {
     private String password;
     @Enumerated(EnumType.STRING)
     private RoleTypes role;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "ownerUser", cascade = CascadeType.ALL)
     private List<Card> cards;
 
     public User() {}
@@ -30,6 +31,14 @@ public class User {
         this.password = password;
         this.role = role;
         this.cards = cards;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEmail() {

@@ -1,8 +1,6 @@
 package services;
 
-import entities.Card;
 import entities.Transaction;
-import entities.Card;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repositories.TransactionRepository;
@@ -26,10 +24,10 @@ public class TransactionService {
         return transactionRepository.save(transaction);
     }
 
-    public List<Transaction> getAllCards() {
+    public List<Transaction> getAllTransactions() {
         return transactionRepository.findAll();
     }
-    public Optional<Transaction> getCardById(Long id) {
+    public Optional<Transaction> getTransactionById(Long id) {
         return transactionRepository.findById(id);
     }
     public Transaction createTransaction(Transaction transaction) {

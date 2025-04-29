@@ -6,12 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CardsApiApplication {
 
-	private JwtCore jwtCore;
-
-	public CardsApiApplication(JwtCore jwtCore) {
-		this.jwtCore = jwtCore;
-	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(CardsApiApplication.class, args);
 	}
