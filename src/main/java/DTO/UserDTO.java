@@ -1,23 +1,24 @@
 package DTO;
 
 import entities.Card;
-import enums.RoleTypes;
+import entities.Role;
 
 import java.util.List;
+import java.util.Set;
 
 public class UserDTO {
 
     private Long id;
     private String email;
     private String password;
-    private RoleTypes role;
+    private Set<Role> roles;
     private List<Card> cards;
 
-    public UserDTO(Long id, String email, RoleTypes role, List<Card> cards, String password) {
+    public UserDTO(Long id, Set<Role> roles, String email, List<Card> cards, String password) {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.roles = roles;
         this.cards = cards;
     }
 
@@ -47,12 +48,12 @@ public class UserDTO {
         this.email = email;
     }
 
-    public RoleTypes getRole() {
-        return role;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(RoleTypes role) {
-        this.role = role;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public List<Card> getCards() {

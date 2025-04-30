@@ -74,7 +74,7 @@ public class UserController {
         user.setId(userDTO.getId());
         user.setEmail(userDTO.getEmail());
         user.setPassword(userDTO.getPassword());
-        user.setRole(userDTO.getRole());
+        user.setRoles(userDTO.getRoles());
         user.setCards(userDTO.getCards());
         return user;
     }
@@ -84,7 +84,7 @@ public class UserController {
         userDTO.setId(user.getId());
         userDTO.setEmail(user.getEmail());
         userDTO.setPassword(user.getPassword());
-        userDTO.setRole(user.getRole());
+        userDTO.setRoles(user.getRoles());
         userDTO.setCards(user.getCards());
         return userDTO;
     }

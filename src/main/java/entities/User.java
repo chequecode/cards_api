@@ -2,35 +2,58 @@ package entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import enums.RoleTypes;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
+    private String username;
+    @Column
     private String email;
     @Column
     private String password;
-    @Enumerated(EnumType.STRING)
-    private RoleTypes role;
     @OneToMany(mappedBy = "ownerUser", cascade = CascadeType.ALL)
     private List<Card> cards;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles;
 
     public User() {}
 
-    public User(Long id, String email, String password, RoleTypes role, List<Card> cards) {
+    public User(Long id, Set<Role> roles, String username, String email, String password, List<Card> cards) {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.role = role;
         this.cards = cards;
+        this.username = username;
+        this.roles = roles;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Long getId() {
@@ -55,14 +78,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public RoleTypes getRole() {
-        return role;
-    }
-
-    public void setRole(RoleTypes role) {
-        this.role = role;
     }
 
     public List<Card> getCards() {

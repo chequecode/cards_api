@@ -18,7 +18,7 @@ public class UserService {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
         user.setEmail(userDetails.getEmail());
         user.setPassword(userDetails.getPassword());
-        user.setRole(userDetails.getRole());
+        user.setRoles(userDetails.getRoles());
         user.setCards(userDetails.getCards());
 
         return userRepository.save(user);
